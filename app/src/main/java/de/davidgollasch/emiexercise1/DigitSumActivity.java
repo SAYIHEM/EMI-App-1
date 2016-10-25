@@ -8,11 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import static de.davidgollasch.emiexercise1.R.id.buttonFire;
+import static de.davidgollasch.emiexercise1.R.id.textViewFibonacci;
+
 public class DigitSumActivity extends AppCompatActivity {
 
-    private TextView tvOutput;
-    private EditText etNumber;
-    private Button btnFire;
+    private TextView textOutput;
+    private EditText editNumber;
+    private Button btnCalc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +32,10 @@ public class DigitSumActivity extends AppCompatActivity {
      * Construct the Interactive Structure
      */
     private void InitializeActivity() {
+        textOutput = (TextView) findViewById(textViewFibonacci);
+        btnCalc = (Button) findViewById(buttonFire);
 
-        /*
-         *
-         *  TODO: IMPLEMENT THIS
-         *  NUMBER 2: LINK VIEWS
-         *
-         *
-         */
-
+        // TODO: Implement Buttons etc.
     }
 
     /**
