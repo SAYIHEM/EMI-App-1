@@ -56,22 +56,16 @@ public class AudioPlaybackActivity extends AppCompatActivity {
         sEasternEmotion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                try {
+
                     EasternEmotionToggled();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         });
 
         sReggaeFeeling.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                try {
+
                     ReggaeFeelingToggled();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         });
 
@@ -142,19 +136,23 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     /**
      * Handle toggling of Eastern Emotion switch
      */
-    private void EasternEmotionToggled() throws IOException {
 
-        mpEasternEmotion.reset();
+    private void EasternEmotionToggled() {
 
-        mpEasternEmotion.setDataSource("/app/src/main/res/raw/reggae_feeling_terrasound_de.mp3");
-            // TODO: Setting the correct path!
+        if (mpReggaeFeeling.isPlaying()) {
 
-        mpReggaeFeeling.setVolume(2, 2);
+            PauseReggaeFeeling();
+            sReggaeFeeling.setChecked(false);
+        }
 
-        mpEasternEmotion.prepare();
+        if (!sEasternEmotion.isChecked()) {
 
-        PlaybackEasternEmotion();
+            PauseEasternEmotion();
 
+        } else {
+
+            PlaybackEasternEmotion();
+        }
     }
 
     /**
@@ -163,7 +161,6 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void PlaybackEasternEmotion() {
 
         mpEasternEmotion.start();
-
     }
 
     /**
@@ -172,21 +169,27 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void PauseEasternEmotion() {
 
         mpEasternEmotion.pause();
-
     }
 
     /**
      * Handle toggling of Reggae Feeling switch
      */
-    private void ReggaeFeelingToggled() throws IOException {
 
-        mpReggaeFeeling.reset();
+    private void ReggaeFeelingToggled() {
 
-        mpReggaeFeeling.setDataSource("/app/src/main/res/raw/reggae_feeling_terrasound_de.mp3");
+        if (mpEasternEmotion.isPlaying()) {
 
-        mpReggaeFeeling.prepare();
+            PauseEasternEmotion();
+            sEasternEmotion.setChecked(false);
+        }
 
-        PlaybackEasternEmotion();
+        if (!sReggaeFeeling.isChecked()) {
+
+            PauseReggaeFeeling();
+        } else {
+
+            PlaybackReggaeFeeling();
+        }
     }
 
     /**
@@ -195,7 +198,6 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void PlaybackReggaeFeeling() {
 
         mpReggaeFeeling.start();
-
     }
 
     /**
@@ -204,7 +206,6 @@ public class AudioPlaybackActivity extends AppCompatActivity {
     private void PauseReggaeFeeling() {
 
         mpReggaeFeeling.pause();
-
     }
 
     /**
