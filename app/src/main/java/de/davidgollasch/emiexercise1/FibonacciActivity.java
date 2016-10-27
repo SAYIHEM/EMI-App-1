@@ -51,14 +51,12 @@ public class FibonacciActivity extends AppCompatActivity {
         int prev = 1;
         int out = 0;
 
-        output = "0\n";
+        output = "0 ";
 
         for (int i = 2; i <= 30; i++) {
 
-
-
             out = prev + prevPrev;
-            output += Integer.toString(out) + "\n";
+            output += Integer.toString(out) + " ";
             prevPrev = prev;
             prev = out;
         }

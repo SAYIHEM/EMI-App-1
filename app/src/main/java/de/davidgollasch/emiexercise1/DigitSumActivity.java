@@ -8,13 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import static de.davidgollasch.emiexercise1.R.id.buttonFire;
-import static de.davidgollasch.emiexercise1.R.id.textViewFibonacci;
-
 public class DigitSumActivity extends AppCompatActivity {
 
     private TextView textOutput;
-    private EditText editNumber;
+    private EditText edit;
     private Button btnCalc;
 
     @Override
@@ -32,39 +29,46 @@ public class DigitSumActivity extends AppCompatActivity {
      * Construct the Interactive Structure
      */
     private void InitializeActivity() {
-        textOutput = (TextView) findViewById(textViewFibonacci);
-        btnCalc = (Button) findViewById(buttonFire);
+        textOutput = (TextView) findViewById(R.id.textOutputField);
+        btnCalc = (Button) findViewById(R.id.btnCalculate);
+        edit = (EditText) findViewById(R.id.editField);
 
-        // TODO: Implement Buttons etc.
+        btnCalc.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v){
+
+                textOutput.setText("Test");
+
+                CalculateDigitSum();
+            }
+        });
     }
 
     /**
      * Trigger the Digit Sum Calculation
      */
     private void CalculateDigitSum() {
-        /*
-         *
-         *  TODO: IMPLEMENT THIS
-         *  NUMBER 3: CALCULATE AND PRINT DIGIT SUM
-         *
-         *
-         */
 
-        /*
-         * a) Get entered number
-         */
+        String string = edit.getText().toString();
 
+        int number = Integer.parseInt(string);
 
-        /*
-         * b) Calculate digit sum
-         *    (Hint: This can be done recursively using an additional function/method
-         *    private int getDigitSum(int n))
-         */
+        number = digitSum(number);
 
-        /*
-         * c) Print result
-         */
-
+        textOutput.setText(Integer.toString(number));
         }
+
+    private int digitSum(int n) {
+
+        int sum = 0;
+
+        while (n != 0) {
+
+            sum += n % 10;
+            n /= 10;
+        }
+
+        return sum;
+    }
 
 }
